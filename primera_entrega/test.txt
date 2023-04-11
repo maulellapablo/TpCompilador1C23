@@ -1,0 +1,23 @@
+program
+
+init {
+int1,int2 : Int
+}
+
+*- Esto es un comentario -*
+
+int1 = 1
+int2 = 2
+write "var1"
+
+if (a > b & c > b)
+{
+write ("int1 es mayor que int3")
+}
+else
+{
+write (int1)
+}
+
+
+end
