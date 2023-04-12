@@ -68,6 +68,7 @@ void escribirEnTablaSimbolos();
 %token LLAVE_C
 %token COR_A
 %token COR_C
+%token INTHE_MIDDLE
 
 %union{
 char * strid;
@@ -112,16 +113,15 @@ sentencia:		asignacion { printf(" - asignacion - OK \n"); }
 
 ciclo:			WHILE PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C;
        
-asignacion:		ID OPAR_ASIG expresion;
+asignacion:		ID OPAR_ASIG expresion
                   
-          
 seleccion: 		IF  PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C { printf("seleccion - OK\n"); } 
 				| IF  PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C ELSE LLAVE_A bloque LLAVE_C;
 
 condicion:		comparacion                         { printf("Comparacion - OK\n"); }
 				|comparacion OP_LOG_AND comparacion { printf("Condicion OP_LOG_AND- OK\n"); }
 				|comparacion OP_LOG_OR comparacion	{ printf("Condicion OP_LOG_OR- OK\n"); }
-				|OP_LOG_NOT comparacion             { printf("Condicion OP_LOG_NOT- OK\n"); } ;
+				|OP_LOG_NOT comparacion             { printf("Condicion OP_LOG_NOT- OK\n"); };
 
 comparacion:	expresion COMP_IGUAL expresion
 				|expresion COMP_MAYOR  expresion        {printf(" - Comparacion Mayor\n");}	
@@ -130,6 +130,10 @@ comparacion:	expresion COMP_IGUAL expresion
 				|expresion COMP_MENOR_IGUAL expresion   {printf(" - Comparacion Menor Igual\n");}
 				|expresion COMP_DISTINTO expresion;
 
+elementinthemiddle: INTHE_MIDDLE PAR_A lista_expresiones PAR_C; 
+
+lista_expresiones: 	factor
+					|lista_expresiones COMA factor;
 
 expresion:		expresion  { printf(" expresion"); } OP_MAS termino { printf(" termino"); }
 				|expresion { printf(" expresion"); }OP_MENOS termino { printf(" termino"); }
@@ -140,20 +144,19 @@ termino:		termino OP_MULT factor { printf(" factor"); }
 				|termino OP_DIV factor { printf(" factor"); }
 				|factor { printf(" factor"); };
                          
-
 factor:			ID 
 				|CTE_ENTERA 
 				|CTE_REAL 
 				|CTE_STRING 
-				|PAR_A expresion PAR_C;
+				|PAR_A expresion PAR_C
+				|elementinthemiddle { printf("Condicion ElementInTheMiddle - OK\n"); } ;
  
 entrada: 		READ PAR_A ID PAR_C;
 
 salida:			 WRITE CTE_STRING 
 			    |WRITE PAR_A ID PAR_C 
 				|WRITE PAR_A CTE_STRING PAR_C;
-          
-          
+    
 %%
  
 int main(int argc,char *argv[])

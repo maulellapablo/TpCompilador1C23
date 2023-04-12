@@ -42,47 +42,48 @@ COMENTARIOS		{COM_INI}(.)+{COM_FIN}
 
 
 %%
-"program"		{ return PROGRAM;}
-"end"			{ return END;}
-"if"			{ return IF; }
-"else"			{ return ELSE; }
-"ciclo"			{ return WHILE; }
-"read"			{ return READ;}
-"write"			{ return WRITE;}
-"=="			{ return COMP_IGUAL; }
-">"				{ return COMP_MAYOR; }
-"<"				{ return COMP_MENOR; }
-">="			{ return COMP_MAYOR_IGUAL; } 
-"<="			{ return COMP_MENOR_IGUAL; }
-"!="			{ return COMP_DISTINTO;}
-"="			    { return OPAR_ASIG;}
-"Int"			{ return TIPO_INT;} 
-"Float"			{ return TIPO_FLOAT; } 
-"String"		{ return TIPO_STRING; }
-"init"			{ return DECVAR;} 
-"&"			    { return OP_LOG_AND; }
-"||"			{ return OP_LOG_OR; }
-"not"			{ return OP_LOG_NOT; } 
+"program"		     { return PROGRAM;}
+"end"			     { return END;}
+"if"			     { return IF;}
+"else"			     { return ELSE;}
+"ciclo"			     { return WHILE;}
+"read"			     { return READ;}
+"write"			     { return WRITE;}
+"=="			     { return COMP_IGUAL;}
+">"				     { return COMP_MAYOR;}
+"<"				     { return COMP_MENOR;}
+">="			     { return COMP_MAYOR_IGUAL;} 
+"<="			     { return COMP_MENOR_IGUAL;}
+"!="			     { return COMP_DISTINTO;}
+"="			         { return OPAR_ASIG;}
+"Int"			     { return TIPO_INT;} 
+"Float"			     { return TIPO_FLOAT;} 
+"String"		     { return TIPO_STRING;}
+"init"			     { return DECVAR;} 
+"&"			         { return OP_LOG_AND;}
+"||"			     { return OP_LOG_OR;}
+"not"			     { return OP_LOG_NOT;} 
+"ElementInTheMiddle" { return INTHE_MIDDLE;} 
 
-{CTE_ENTERA}	{ validarCotaEntero(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.num = strdup(yytext); return CTE_ENTERA;}
-{CTE_REAL}		{ validarCotaReal(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.real = strdup(yytext); return CTE_REAL; }
-{CTE_STRING}	{ validarCotaCaracteres(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.real = strdup(yytext); return CTE_STRING; }
-{ID}			{ validarCotaCaracteres(yytext); guardarEnTablaSimbolos("ID",yytext); yylval.strid = strdup(yytext); return ID; }
-{COMENTARIO}	{ printf("\nComentario que sera descartado:  %s\n",yytext); }
-
-"+"				{ return OP_MAS;  }  
-"-"				{ return OP_MENOS; }
-"*"				{ return OP_MULT; }
-"/"				{ return OP_DIV; }
-":"				{ return DOS_PUNTOS; }
-";"				{ return PUN_Y_COM; }
-","				{ return COMA; }
-"("				{ return PAR_A; }
-")"				{ return PAR_C; }
-"{"				{ return LLAVE_A; }
-"}"				{ return LLAVE_C; }
-"["				{ return COR_A; }
-"]"				{ return COR_C; }	
+{CTE_ENTERA}	     { validarCotaEntero(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.num = strdup(yytext); return CTE_ENTERA;}
+{CTE_REAL}		     { validarCotaReal(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.real = strdup(yytext); return CTE_REAL; }
+{CTE_STRING}	     { validarCotaCaracteres(yytext); guardarEnTablaSimbolos("CTE",yytext); yylval.real = strdup(yytext); return CTE_STRING; }
+{ID}			     { validarCotaCaracteres(yytext); guardarEnTablaSimbolos("ID",yytext); yylval.strid = strdup(yytext); return ID; }
+{COMENTARIO}	     { printf("\nComentario que sera descartado:  %s\n",yytext); }
+     
+"+"				     { return OP_MAS;}  
+"-"				     { return OP_MENOS;}
+"*"				     { return OP_MULT;}
+"/"				     { return OP_DIV;}
+":"				     { return DOS_PUNTOS;}
+";"				     { return PUN_Y_COM;}
+","				     { return COMA;}
+"("				     { return PAR_A;}
+")"				     { return PAR_C;}
+"{"				     { return LLAVE_A;}
+"}"				     { return LLAVE_C;}
+"["				     { return COR_A;}
+"]"				     { return COR_C;}	
 
 "\n"      		
 "\t"
