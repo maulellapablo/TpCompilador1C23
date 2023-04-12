@@ -10,14 +10,9 @@ int1 = 1
 int2 = 2
 write "var1"
 
-if (a > b & c > b)
+if (not a > b)
 {
-write ("int1 es mayor que int3")
+  write("a no es mas grande que b")
 }
-else
-{
-write (int1)
-}
-
 
 end

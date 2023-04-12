@@ -94,8 +94,8 @@ lista_var:		ID {strcpy(matrizVariables[contadorId],yylval.strid) ;  contadorId++
 				| lista_var COMA ID {strcpy(matrizVariables[contadorId],yylval.strid) ; contadorId++;};
 
  
-lista_tipo:		TIPO_INT { auxTipoDato="int"; strcpy(matrizTipoDato[contadorTipos],auxTipoDato); agregarTipoEnTablaSimbolos(matrizVariables[contadorTipos],contadorTipos); contadorTipos++; printf("Variable Entera\n"); }
-				|TIPO_FLOAT {  auxTipoDato="float"; strcpy(matrizTipoDato[contadorTipos],auxTipoDato); agregarTipoEnTablaSimbolos(matrizVariables[contadorTipos],contadorTipos); contadorTipos++; printf("Variable Real\n"); }
+lista_tipo:		 TIPO_INT    { auxTipoDato="int"; strcpy(matrizTipoDato[contadorTipos],auxTipoDato); agregarTipoEnTablaSimbolos(matrizVariables[contadorTipos],contadorTipos); contadorTipos++; printf("Variable Entera\n"); }
+				|TIPO_FLOAT  {  auxTipoDato="float"; strcpy(matrizTipoDato[contadorTipos],auxTipoDato); agregarTipoEnTablaSimbolos(matrizVariables[contadorTipos],contadorTipos); contadorTipos++; printf("Variable Real\n"); }
 				|TIPO_STRING { auxTipoDato="string"; strcpy(matrizTipoDato[contadorTipos],auxTipoDato); agregarTipoEnTablaSimbolos(matrizVariables[contadorTipos],contadorTipos); contadorTipos++; printf("Constante String\n"); };
               
 
@@ -106,9 +106,9 @@ bloque:			sentencia
 
 sentencia:		asignacion { printf(" - asignacion - OK \n"); }
 				|seleccion { printf(" - seleccion - OK \n"); }
-				|ciclo { printf(" - ciclo - OK \n"); }
-				|entrada { printf(" - entrada - OK \n"); }
-				|salida { printf(" - salida - OK \n"); };
+				|ciclo     { printf(" - ciclo - OK \n"); }
+				|entrada   { printf(" - entrada - OK \n"); }
+				|salida    { printf(" - salida - OK \n"); };
 
 ciclo:			WHILE PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C;
        
@@ -118,22 +118,22 @@ asignacion:		ID OPAR_ASIG expresion;
 seleccion: 		IF  PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C { printf("seleccion - OK\n"); } 
 				| IF  PAR_A condicion PAR_C LLAVE_A bloque LLAVE_C ELSE LLAVE_A bloque LLAVE_C;
 
-condicion:		comparacion { printf("Comparacion - OK\n"); }
-				|comparacion OP_LOG_AND comparacion
-				|comparacion OP_LOG_OR comparacion	
-				|comparacion OP_LOG_NOT comparacion;
+condicion:		comparacion                         { printf("Comparacion - OK\n"); }
+				|comparacion OP_LOG_AND comparacion { printf("Condicion OP_LOG_AND- OK\n"); }
+				|comparacion OP_LOG_OR comparacion	{ printf("Condicion OP_LOG_OR- OK\n"); }
+				|OP_LOG_NOT comparacion             { printf("Condicion OP_LOG_NOT- OK\n"); } ;
 
 comparacion:	expresion COMP_IGUAL expresion
-				|expresion COMP_MAYOR  expresion {printf(" - Comparacion Mayor\n");}	
-				|expresion COMP_MENOR expresion  {printf(" - Comparacion Menor\n");}
+				|expresion COMP_MAYOR  expresion        {printf(" - Comparacion Mayor\n");}	
+				|expresion COMP_MENOR expresion         {printf(" - Comparacion Menor\n");}
 				|expresion COMP_MAYOR_IGUAL expresion   {printf(" - Comparacion Mayor Igual\n");}
 				|expresion COMP_MENOR_IGUAL expresion   {printf(" - Comparacion Menor Igual\n");}
 				|expresion COMP_DISTINTO expresion;
 
 
-expresion:		expresion { printf(" expresion"); } OP_MAS termino { printf(" termino"); }
+expresion:		expresion  { printf(" expresion"); } OP_MAS termino { printf(" termino"); }
 				|expresion { printf(" expresion"); }OP_MENOS termino { printf(" termino"); }
-				|termino { printf(" termino"); };
+				|termino   { printf(" termino"); };
 									
 
 termino:		termino OP_MULT factor { printf(" factor"); }

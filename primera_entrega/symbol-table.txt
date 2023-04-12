@@ -7,5 +7,4 @@
 |_"var1"                       |               |"var1"                          |4       |
 |_a                            |               |                                |        |
 |_b                            |               |                                |        |
-|_c                            |               |                                |        |
-|_"int1 es mayor que int3"     |               |"int1 es mayor que int3"        |22      |
+|_"a no es mas grande que b"   |               |"a no es mas grande que b"      |24      |
