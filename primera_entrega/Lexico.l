@@ -33,7 +33,7 @@ CTE_REAL		-?({DIGITO})*"."({DIGITO})+
 COMILLAS		"\""
 COM_INI			"*-" 
 COM_FIN			"-*"
-CARACTERES		({LETRA}|\@|\!|\$|\%|\&|\/|\(|\)|\=|\\|\?)
+CARACTERES		({LETRA}|\!|\$|\%|\&|\/|\(|\)|\=|\\|\?)
 ESPACIO			" "
 CTE_STRING		{COMILLAS}({CARACTERES}|{DIGITO}|{ESPACIO})+{COMILLAS}
 COMENTARIO		{COM_INI}(.)+{COM_FIN}
@@ -192,16 +192,7 @@ void escribirEnTablaSimbolos(){
 	fclose(pf); 
 }
 
-int yyerror(void)
-{
-	printf("Syntax Error error\n");
-	system ("Pause");
-	exit (1);
-}
-
-int mensaje_error(char* mensaje)
-{
-	printf("Error lexico: %s\nLinea: %d\n", mensaje , yylineno);
-	system ("Pause");
-	exit (1);
+int yyerror(const char *msg) {
+    fprintf(stderr, "Error at line %d: %s\n", yylineno-1, msg);
+    exit(1);
 }
