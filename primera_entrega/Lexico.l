@@ -87,7 +87,10 @@ COMENTARIOS		{COM_INI}(.)+{COM_FIN}
 
 "\n"      		
 "\t"
-" "             		
+"\n\t"
+"\r\n"
+" "
+.
 
 %%
 
