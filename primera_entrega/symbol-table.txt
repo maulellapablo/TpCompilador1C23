@@ -1,18 +1,29 @@
 |Nombre                        |Tipo           |Valor                           |Longitud|
 ------------------------------------------------------------------------------------------
 |_int1                         |int            |                                |        |
-|_int2                         |               |                                |        |
+|_int2                         |float          |                                |        |
+|_a1                           |string         |                                |        |
+|_b1                           |               |                                |        |
+|_p1                           |               |                                |        |
+|_p2                           |               |                                |        |
+|_p3                           |               |                                |        |
 |_1                            |               |1                               |        |
 |_2                            |               |2                               |        |
-|_"var1"                       |               |"var1"                          |4       |
+|_"int1"                       |               |"int1"                          |4       |
+|_99999.99                     |               |99999.99                        |        |
+|_99                           |               |99                              |        |
+|_.9999                        |               |.9999                           |        |
+|_"?@sdADaSjfla%dfg?"          |               |"?@sdADaSjfla%dfg?"             |17      |
+|_"asldk  fh sjf"              |               |"asldk  fh sjf"                 |13      |
 |_x                            |               |                                |        |
 |_a                            |               |                                |        |
 |_b                            |               |                                |        |
 |_c                            |               |                                |        |
 |_1.0                          |               |1.0                             |        |
 |_d                            |               |                                |        |
-|_99                           |               |99                              |        |
 |_100                          |               |100                             |        |
 |_-5                           |               |-5                              |        |
 |_e                            |               |                                |        |
 |_"a no es mas grande que b"   |               |"a no es mas grande que b"      |24      |
+|_"a es mas chico o igual a b" |               |"a es mas chico o igual a b"    |26      |
+|_"a es mas grande que b"      |               |"a es mas grande que b"         |21      |
