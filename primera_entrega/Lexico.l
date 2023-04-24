@@ -33,7 +33,7 @@ CTE_REAL		-?({DIGITO})*"."({DIGITO})+
 COMILLAS		"\""
 COM_INI			"*-" 
 COM_FIN			"-*"
-CARACTERES		({LETRA}|\!|\$|\%|\&|\/|\(|\)|\=|\\|\?)
+CARACTERES		({LETRA}|@|\!|\$|\%|\&|\/|\(|\)|\=|\\|\?)
 ESPACIO			" "
 CTE_STRING		{COMILLAS}({CARACTERES}|{DIGITO}|{ESPACIO})+{COMILLAS}
 COMENTARIO		{COM_INI}(.)+{COM_FIN}
