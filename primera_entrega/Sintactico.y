@@ -16,9 +16,10 @@ struct struct_tablaSimbolos
 int yystopparser=0;
 FILE  *yyin;
 extern int yylineno;
+extern char *yytext;
 
 int yylex();
-int yyerror(const char *);
+int yyerror(char *);
 extern struct struct_tablaSimbolos tablaSimbolos[1000]; 
 extern int puntero_array;
 int contadorTipos = 0;

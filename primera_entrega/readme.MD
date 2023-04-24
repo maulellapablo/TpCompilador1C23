@@ -16,5 +16,5 @@ Arbol
 ```
 ## Profesor asignado
 ```
-Facundo
+Facundo Velazquez
 ```
