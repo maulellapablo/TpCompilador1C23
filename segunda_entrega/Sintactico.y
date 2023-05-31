@@ -69,6 +69,8 @@ t_nodo* ptr_sali; //salida
 
 //flags
 int and_flag, or_flag;
+int _cont = 0;
+char *_aux[1000];
 
 %}
 %token PROGRAM
@@ -199,10 +201,14 @@ comparacion:	expresion {ptr_comp_aux = ptr_expr;} COMP_IGUAL expresion {ptr_comp
 				|expresion {ptr_comp_aux = ptr_expr;} COMP_MENOR_IGUAL expresion {ptr_comp = crearNodo("<=",ptr_comp_aux,ptr_expr);}  
 				|expresion {ptr_comp_aux = ptr_expr;} COMP_DISTINTO expresion {ptr_comp = crearNodo("!=",ptr_comp_aux,ptr_expr);} ;
 
-elementinthemiddle: INTHE_MIDDLE PAR_A lista_expresiones PAR_C; 
+elementinthemiddle: INTHE_MIDDLE PAR_A lista_expresiones PAR_C {
+					printf("\nINTHE_MIDDLE! Cant. params: %d\n", _cont);
+					printf("\nINTHE_MIDDLE! In the middle: %s\n", _aux[(_cont-1)/2]);
+					ptr_inmid = crearHoja(_aux[(_cont-1)/2]);
+				};
 
-lista_expresiones: 	factor
-					|lista_expresiones COMA factor;
+lista_expresiones: 	factor { _cont = 1; };
+					|lista_expresiones COMA factor { _cont++; };
 
 expresion:		expresion { printf(" expresion"); } OP_MAS termino { printf(" termino"); ptr_expr=crearNodo("+",ptr_expr,ptr_term); }
 				|expresion { printf(" expresion"); }OP_MENOS termino { printf(" termino"); ptr_expr=crearNodo("-",ptr_expr,ptr_term);}
@@ -213,18 +219,18 @@ termino:		termino OP_MULT factor { printf(" factor"); ptr_term=crearNodo("*",ptr
 				|termino OP_DIV factor { printf(" factor"); ptr_term=crearNodo("/",ptr_term,ptr_fact);}
 				|factor { printf(" factor"); ptr_term=ptr_fact; };
                          
-factor:			ID {ptr_fact = crearHoja($1); }
-				|CTE_ENTERA {ptr_fact = crearHoja($1); }
-				|CTE_REAL {ptr_fact = crearHoja($1); }
-				|CTE_STRING {ptr_fact = crearHoja($1); }
-				|PAR_A expresion PAR_C {;}
-				|elementinthemiddle { printf("Condicion ElementInTheMiddle - OK\n"); } ;
+factor:			ID {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
+				|CTE_ENTERA {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
+				|CTE_REAL {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
+				|CTE_STRING {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
+				|PAR_A expresion PAR_C { ; }
+				|elementinthemiddle { ptr_fact = ptr_inmid; printf("Condicion ElementInTheMiddle - OK\n"); } ;
  
-entrada: 		READ PAR_A ID PAR_C;
+entrada: 		READ PAR_A ID PAR_C {ptr_entr = crearHoja($3);};
 
-salida:			 WRITE CTE_STRING             
-			    |WRITE PAR_A ID PAR_C         
-				|WRITE PAR_A CTE_STRING PAR_C;
+salida:			 WRITE CTE_STRING {ptr_sali = crearHoja($2);}
+			    |WRITE PAR_A ID PAR_C {ptr_sali = crearHoja($3);}
+				|WRITE PAR_A CTE_STRING PAR_C {ptr_sali = crearHoja($3);};
     
 %%
  
@@ -235,7 +241,7 @@ int main(int argc,char *argv[])
 	return 1;
   }
 
-  if ((f_intermedia = fopen("intermedia.txt", "wt")) == NULL){
+  if ((f_intermedia = fopen("intermediate-code.txt", "wt")) == NULL){
 	printf("\nERROR! No se pudo abrir el archivo intermedia\n");
 	return 1;
   }
