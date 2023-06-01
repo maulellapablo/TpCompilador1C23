@@ -178,7 +178,7 @@ seleccion: 		IF  PAR_A condicion PAR_C LLAVE_A sub_bloque LLAVE_C {
 																	}
 																}
 
-				| IF  PAR_A condicion PAR_C LLAVE_A sub_bloque {ptr_true = ptr_sub_bloq;} LLAVE_C  ELSE LLAVE_A sub_bloque {ptr_false = ptr_sub_bloq;} LLAVE_C {
+				| IF  PAR_A condicion PAR_C LLAVE_A sub_bloque LLAVE_C {ptr_true = ptr_sub_bloq;} ELSE LLAVE_A sub_bloque {ptr_false = ptr_sub_bloq;} LLAVE_C {
 																	if(and_flag){
 																		ptr_sele = crearNodo("if", ptr_cond, crearNodo("else",crearNodo("if",ptr_cond_aux,crearNodo("else",ptr_true,ptr_false)),ptr_false));
 																		and_flag = 0;

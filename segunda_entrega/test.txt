@@ -29,15 +29,14 @@ x = ElementInTheMiddle(a, b, c, 1.0, d, 99, 100, -5, e)
 
 *-------------  if -------------*
 
-if (a > b)
-{
+if (a > b){
+  write("a no es mas grande que b")
+}else{
   write("a no es mas grande que b")
 }
-
 *-------------  ciclo -------------*
 
-ciclo (a > b)
-{
+ciclo (a > b){
     write("a es mas grande que b")
     a = a + 1
 }
