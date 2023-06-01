@@ -128,7 +128,8 @@ programa: PROGRAM zona_declaracion algoritmo END {ptr_prog = crearNodo("programa
 zona_declaracion:	declaraciones {ptr_zona = ptr_decls;};
 
 declaraciones:	declaracion {ptr_decls = ptr_decl;}
-				|declaraciones declaracion {ptr_decls = crearNodo("declaraciones", ptr_decls, ptr_decl);};
+				|declaraciones declaracion {
+					ptr_decls = crearNodo("declaraciones", ptr_decls, ptr_decl);};
 
 declaracion:	DECVAR LLAVE_A { printf("***** Inicio declaracion de variables *****\n"); } lista_declaracion LLAVE_C {ptr_decl= ptr_list_dec; printf("*****\n Fin declaracion de variables *****\n");};
 
@@ -191,7 +192,7 @@ seleccion: 		IF  PAR_A condicion PAR_C LLAVE_A sub_bloque LLAVE_C {
 			
 condicion:		comparacion              {ptr_cond = ptr_comp; printf("Comparacion - OK\n"); }
 				|comparacion OP_LOG_AND  {ptr_cond_aux = ptr_comp; } comparacion { and_flag = 1;ptr_cond = ptr_comp; printf("Condicion OP_LOG_AND- OK\n"); }
-				|comparacion OP_LOG_OR   {ptr_cond_aux = ptr_comp; } comparacion { and_flag = 1;ptr_cond = ptr_comp; printf("Condicion OP_LOG_OR- OK\n"); }
+				|comparacion OP_LOG_OR   {ptr_cond_aux = ptr_comp; } comparacion { or_flag = 1;ptr_cond = ptr_comp; printf("Condicion OP_LOG_OR- OK\n"); }
 				|OP_LOG_NOT comparacion  {ptr_cond = crearNodo("not", ptr_comp, NULL); printf("Condicion OP_LOG_NOT- OK\n"); };
 
 comparacion:	expresion {ptr_comp_aux = ptr_expr;} COMP_IGUAL expresion {ptr_comp = crearNodo("==",ptr_comp_aux,ptr_expr);}  
@@ -207,7 +208,7 @@ elementinthemiddle: INTHE_MIDDLE PAR_A lista_expresiones PAR_C {
 					ptr_inmid = crearHoja(_aux[(_cont-1)/2]);
 				};
 
-lista_expresiones: 	factor { _cont = 1; };
+lista_expresiones: 	factor { _cont = 1;}
 					|lista_expresiones COMA factor { _cont++; };
 
 expresion:		expresion { printf(" expresion"); } OP_MAS termino { printf(" termino"); ptr_expr=crearNodo("+",ptr_expr,ptr_term); }
@@ -223,8 +224,8 @@ factor:			ID {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
 				|CTE_ENTERA {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
 				|CTE_REAL {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
 				|CTE_STRING {ptr_fact = crearHoja($1); _aux[_cont] = $1;}
-				|PAR_A expresion PAR_C { ; }
-				|elementinthemiddle { ptr_fact = ptr_inmid; printf("Condicion ElementInTheMiddle - OK\n"); } ;
+				|PAR_A expresion PAR_C
+				|elementinthemiddle {ptr_fact = ptr_inmid; printf("Condicion ElementInTheMiddle - OK\n"); } ;
  
 entrada: 		READ PAR_A ID PAR_C {ptr_entr = crearHoja($3);};
 
