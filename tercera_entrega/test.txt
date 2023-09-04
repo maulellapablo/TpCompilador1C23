@@ -1,0 +1,44 @@
+program
+
+init {
+int1,int2 : Int
+a1, b1 : Float
+p1, p2, p3 : String
+}
+
+*- Esto es un comentario -*
+*- Esto es un comentario *- Anidado a otro comentario -*-*
+
+int1 = 1
+int2 = 2
+write "int1"
+read(int2)
+
+*-------------  Asignaciones -------------*
+
+a1 = 99999.99
+a1 = 99.
+a1 = .9999
+
+p1 = "?@sdADaSjfla%dfg?"
+p1 = "asldk  fh sjf"
+
+*-------------  ElementInTheMiddle -------------*
+
+x = ElementInTheMiddle(a, b, c, 1.0, d, 99, 100, -5, e)
+
+*-------------  if -------------*
+
+if (a > b){
+  write("a no es mas grande que b")
+}else{
+  write("a no es mas grande que b")
+}
+*-------------  ciclo -------------*
+
+ciclo (a > b){
+    write("a es mas grande que b")
+    a = a + 1
+}
+
+end
