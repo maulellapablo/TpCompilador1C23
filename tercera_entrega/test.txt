@@ -1,0 +1,33 @@
+program
+
+
+init {
+int1,int2 : Int
+a1, b1 : Float
+p1, p2, p3 : String
+}
+
+*- Esto es un comentario -*
+*- Esto es un comentario *- Anidado a otro comentario -*-*
+
+*-------------  Asignaciones -------------*
+int1 = 1
+int2 = 2
+write "int1"
+read(int2)
+
+*-------------  if -------------*
+
+if (int1 > int2){
+  write("int1 no es mas grande que int2")
+}else{
+  write("int1 no es mas grande que int2")
+}
+*-------------  ciclo -------------*
+
+ciclo (int1 > int2){
+    write("int1 es mas grande que int2")
+    int1 = int1 + int2
+}
+
+end

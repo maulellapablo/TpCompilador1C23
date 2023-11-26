@@ -1,0 +1,1 @@
+ int1   :=   _1   bloque   int2   :=   _2   bloque   _int1   salida   bloque   int2   entrada   bloque   int1   >   int2   if   _int1_no_es_mas_grande_que_int2   salida   else   _int1_no_es_mas_grande_que_int2   salida   bloque   int1   >   int2   ciclo   _int1_es_mas_grande_que_int2   salida   sub_bloque   int1   :=   int1   +   int2   programa  
