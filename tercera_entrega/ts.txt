@@ -2,14 +2,8 @@
 ------------------------------------------------------------------------------------------
 |int1                          |int            |                                |0       |
 |int2                          |int            |                                |0       |
-|a1                            |float          |                                |0       |
-|b1                            |float          |                                |0       |
-|p1                            |string         |                                |0       |
-|p2                            |string         |                                |0       |
-|p3                            |string         |                                |0       |
+|resultado                     |int            |                                |0       |
 |_1                            |int            |1.00                            |0       |
 |_2                            |int            |2.00                            |0       |
-|_int1                         |string         |"int1"                          |4       |
-|_int1_no_es_mas_grande_que_int2|string         |"int1 no es mas grande que int2"|30      |
-|_int1_es_mas_grande_que_int2  |string         |"int1 es mas grande que int2"   |27      |
+|_El_resultado_es_=_           |string         |"El resultado es = "            |18      |
 |@Aux1                         |float          |                                |0       |
